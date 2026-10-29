@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>برنامه‌ریز مطالعه</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300..800&display=swap"
+    />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var raw = localStorage.getItem('study-planner:v1');
+          var theme = raw ? (JSON.parse(raw).settings || {}).theme : 'system';
+          var dark = theme === 'dark' || ((!theme || theme === 'system') && matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+    <!--APP_CSS-->
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>برای استفاده از این برنامه، جاوااسکریپت مرورگر را فعال کنید.</noscript>
+    <!--APP_JS-->
+  </body>
+</html>

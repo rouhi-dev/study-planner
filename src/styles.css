@@ -1,0 +1,185 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens. Every colour in the UI resolves to one of these variables, so
+ * light and dark themes are defined in one place. Course hues are only used as
+ * markers (dots, strips, bars); the single interactive accent is "primary".
+ */
+:root {
+  --c-bg: #f6f6f3;
+  --c-surface: #ffffff;
+  --c-subtle: #f0f0ec;
+  --c-sunken: #e9e9e4;
+  --c-line: #e3e3dd;
+  --c-line-strong: #cfcfc7;
+  --c-ink: #1b1c1f;
+  --c-ink-2: #45474d;
+  --c-ink-3: #6c6f76;
+  --c-primary: #3346c4;
+  --c-primary-hover: #2a3ba8;
+  --c-primary-soft: #eceffc;
+  --c-on-primary: #ffffff;
+  --c-success: #187a46;
+  --c-success-soft: #e6f3eb;
+  --c-warn: #9a5a07;
+  --c-warn-soft: #fbf1df;
+  --c-danger: #b42d1d;
+  --c-danger-soft: #fbeae7;
+  --c-rp: #3346c4;
+  --c-rp-soft: #eceffc;
+  --c-math: #008a78;
+  --c-math-soft: #e3f3f1;
+  --c-nn: #a8620a;
+  --c-nn-soft: #faf0e1;
+  --c-rose: #c0306a;
+  --c-rose-soft: #f9e8ee;
+  --c-slate: #56606e;
+  --c-slate-soft: #eceef1;
+  --c-fixed: #e4e4de;
+  --shadow-card: 0 1px 2px rgb(20 20 30 / 0.04), 0 1px 1px rgb(20 20 30 / 0.03);
+  --shadow-pop: 0 12px 32px -8px rgb(20 20 30 / 0.18), 0 2px 6px rgb(20 20 30 / 0.06);
+  color-scheme: light;
+}
+
+.dark {
+  --c-bg: #111214;
+  --c-surface: #18191c;
+  --c-subtle: #1f2024;
+  --c-sunken: #26272c;
+  --c-line: #2a2c31;
+  --c-line-strong: #3a3d44;
+  --c-ink: #ecedef;
+  --c-ink-2: #c2c4c9;
+  --c-ink-3: #93969d;
+  --c-primary: #8a99f3;
+  --c-primary-hover: #a3aff6;
+  --c-primary-soft: #23284a;
+  --c-on-primary: #111214;
+  --c-success: #5fc68d;
+  --c-success-soft: #18301f;
+  --c-warn: #e2a94e;
+  --c-warn-soft: #33281a;
+  --c-danger: #f08573;
+  --c-danger-soft: #3a1f1b;
+  --c-rp: #7383ea;
+  --c-rp-soft: #23284a;
+  --c-math: #1a9e8e;
+  --c-math-soft: #16302d;
+  --c-nn: #c2862c;
+  --c-nn-soft: #33281a;
+  --c-rose: #d8628c;
+  --c-rose-soft: #3a1f29;
+  --c-slate: #a5adb9;
+  --c-slate-soft: #262a31;
+  --c-fixed: #24252a;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-pop: 0 16px 40px -8px rgb(0 0 0 / 0.6), 0 2px 6px rgb(0 0 0 / 0.4);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Vazirmatn', 'Vazir', Tahoma, 'Segoe UI', 'Noto Sans Arabic', system-ui, sans-serif;
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-subtle: var(--c-subtle);
+  --color-sunken: var(--c-sunken);
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+  --color-ink: var(--c-ink);
+  --color-ink-2: var(--c-ink-2);
+  --color-ink-3: var(--c-ink-3);
+  --color-primary: var(--c-primary);
+  --color-primary-hover: var(--c-primary-hover);
+  --color-primary-soft: var(--c-primary-soft);
+  --color-on-primary: var(--c-on-primary);
+  --color-success: var(--c-success);
+  --color-success-soft: var(--c-success-soft);
+  --color-warn: var(--c-warn);
+  --color-warn-soft: var(--c-warn-soft);
+  --color-danger: var(--c-danger);
+  --color-danger-soft: var(--c-danger-soft);
+  --color-rp: var(--c-rp);
+  --color-rp-soft: var(--c-rp-soft);
+  --color-math: var(--c-math);
+  --color-math-soft: var(--c-math-soft);
+  --color-nn: var(--c-nn);
+  --color-nn-soft: var(--c-nn-soft);
+  --color-rose: var(--c-rose);
+  --color-rose-soft: var(--c-rose-soft);
+  --color-slate: var(--c-slate);
+  --color-slate-soft: var(--c-slate-soft);
+  --color-fixed: var(--c-fixed);
+  --shadow-card: var(--shadow-card);
+  --shadow-pop: var(--shadow-pop);
+  --radius-card: 10px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    font-feature-settings: 'ss01';
+  }
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  /* Grid/flex children may shrink below their content width (prevents mobile overflow). */
+  .grid > * {
+    min-width: 0;
+  }
+  ::selection {
+    background: var(--c-primary-soft);
+  }
+  :focus-visible {
+    outline: 2px solid var(--c-primary);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  button,
+  [role='button'] {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+  /* Latin snippets (course codes, Python, MATLAB) read better left-to-right. */
+  .ltr {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .fixed-hatch {
+    background-color: var(--c-fixed);
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 7px,
+      color-mix(in srgb, var(--c-ink) 6%, transparent) 7px 8px
+    );
+  }
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-line-strong) transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "barnamerize-study-planner",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "برنامه‌ریز مطالعه فارسی و راست‌به‌چپ برای دانشجوی کارشناسی ارشد سیستم‌های مخابراتی",
+  "scripts": {
+    "dev": "node scripts/build.mjs --dev",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck:offline": "tsc -p tsconfig.offline.json --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "esbuild": "^0.28.0",
+    "tailwindcss": "^4.3.0",
+    "tsx": "^4.20.0",
+    "typescript": "^6.0.0"
+  }
+}
